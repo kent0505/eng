@@ -1,8 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../../core/constants.dart';
-
 abstract interface class UserRepository {
   const UserRepository();
 

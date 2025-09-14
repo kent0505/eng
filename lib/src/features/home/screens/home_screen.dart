@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/utils.dart';
+import '../../lesson/widgets/lessons_list.dart';
 import '../bloc/home_bloc.dart';
 import '../widgets/home_appbar.dart';
 import '../widgets/nav_bar.dart';
@@ -40,10 +41,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     HomeFavorite() => 1,
                     HomeSettings() => 2,
                   },
-                  children: const [
-                    Placeholder(),
-                    Placeholder(),
-                    Placeholder(),
+                  children: [
+                    const LessonsList(),
+                    const Placeholder(),
+                    const Placeholder(),
                   ],
                 );
               },
