@@ -14,6 +14,8 @@ import 'src/features/user/bloc/user_bloc.dart';
 import 'src/features/user/data/user_repository.dart';
 import 'src/features/home/bloc/home_bloc.dart';
 
+// adb reverse tcp:8000 tcp:8000
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
@@ -27,13 +29,14 @@ void main() async {
 
   final baseUrl = dotenv.env['BASE_URL'] ?? '';
   final token = prefs.getString(Keys.token) ?? dotenv.env['TOKEN'] ?? '';
+  final timeout = const Duration(seconds: 10);
 
   final dio = Dio(
     BaseOptions(
       baseUrl: baseUrl,
-      connectTimeout: const Duration(seconds: 10),
-      receiveTimeout: const Duration(seconds: 10),
-      sendTimeout: const Duration(seconds: 10),
+      connectTimeout: timeout,
+      receiveTimeout: timeout,
+      sendTimeout: timeout,
       validateStatus: (status) => true,
       headers: {
         'Content-Type': 'application/json',

@@ -28,16 +28,16 @@ flutter:
     - .env
     - assets/
     - assets/fonts/
-  # fonts:
-  #   - family: w400
-  #     fonts:
-  #       - asset: assets/fonts/Inter-Regular.ttf
-  #   - family: w500
-  #     fonts:
-  #       - asset: assets/fonts/Inter-Medium.ttf
-  #   - family: w600
-  #     fonts:
-  #       - asset: assets/fonts/Inter-SemiBold.ttf
-  #   - family: w700
-  #     fonts:
-  #       - asset: assets/fonts/Inter-Bold.ttf
+  fonts:
+    - family: w400
+      fonts:
+        - asset: assets/fonts/Rubik-Regular.ttf
+    - family: w500
+      fonts:
+        - asset: assets/fonts/Rubik-Medium.ttf
+    - family: w600
+      fonts:
+        - asset: assets/fonts/Rubik-SemiBold.ttf
+    - family: w700
+      fonts:
+        - asset: assets/fonts/Rubik-Bold.ttf

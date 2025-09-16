@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 
+import '../../../core/widgets/appbar.dart';
 import '../models/lesson.dart';
 
 class LessonScreen extends StatelessWidget {
@@ -13,7 +14,19 @@ class LessonScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: Appbar(
+        title: lesson.title,
+        // right: Container(
+        //   color: Colors.amberAccent,
+        //   child: Button(
+        //     minSize: 60,
+        //     onPressed: () {},
+        //     child: SvgWidget(
+        //       Assets.back,
+        //     ),
+        //   ),
+        // ),
+      ),
       body: MarkdownBody(
         data: lesson.content,
         styleSheet: MarkdownStyleSheet(

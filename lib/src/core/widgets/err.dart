@@ -22,7 +22,7 @@ class Err extends StatelessWidget {
           Text(
             error,
             style: TextStyle(
-              color: Colors.black,
+              color: AppColors.black,
               fontSize: 16,
               fontFamily: AppFonts.w400,
             ),

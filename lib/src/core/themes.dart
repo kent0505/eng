@@ -7,37 +7,20 @@ final theme = ThemeData(
   brightness: Brightness.light,
   fontFamily: AppFonts.w400,
   textSelectionTheme: const TextSelectionThemeData(
-    cursorColor: Color(0xff095EF1),
-    selectionColor: Color(0xff095EF1),
-    selectionHandleColor: Color(0xff095EF1),
+    cursorColor: AppColors.accent,
+    selectionColor: AppColors.accent,
+    selectionHandleColor: AppColors.accent,
   ),
 
   // OVERSCROLL
   colorScheme: const ColorScheme.light(
-    primary: Colors.black,
-    secondary: Color(0xffd5d5d5), // overscroll
-    surface: Color(0xffF2F5F8), // bg color when push
+    primary: AppColors.black,
+    secondary: AppColors.overScroll, // overscroll
+    surface: AppColors.bg, // bg color when push
   ),
 
   // SCAFFOLD
-  scaffoldBackgroundColor: const Color(0xffF2F5F8),
-
-  // APPBAR
-  appBarTheme: const AppBarTheme(
-    backgroundColor: Color(0xffF2F5F8),
-    centerTitle: true,
-    toolbarHeight: 64, // app bar size
-    elevation: 0,
-    actionsPadding: EdgeInsets.symmetric(
-      horizontal: 16,
-      vertical: 8,
-    ),
-    titleTextStyle: TextStyle(
-      color: Colors.black,
-      fontSize: 18,
-      fontFamily: AppFonts.w600,
-    ),
-  ),
+  scaffoldBackgroundColor: AppColors.bg,
 
   // DIALOG
   dialogTheme: const DialogThemeData(
@@ -50,7 +33,7 @@ final theme = ThemeData(
   // TEXTFIELD
   inputDecorationTheme: InputDecorationTheme(
     filled: true,
-    contentPadding: EdgeInsets.symmetric(
+    contentPadding: const EdgeInsets.symmetric(
       vertical: 16,
       horizontal: 16,
     ),
@@ -62,10 +45,10 @@ final theme = ThemeData(
       borderRadius: BorderRadius.circular(16),
       borderSide: const BorderSide(color: Colors.transparent),
     ),
-    hintStyle: const TextStyle(
-      color: Color(0xff707883),
+    hintStyle: TextStyle(
+      color: AppColors.hintColor,
       fontSize: 14,
-      fontFamily: AppFonts.w500,
+      fontFamily: AppFonts.w400,
     ),
   ),
 );
