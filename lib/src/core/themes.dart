@@ -26,7 +26,7 @@ final theme = ThemeData(
   dialogTheme: const DialogThemeData(
     insetPadding: EdgeInsets.zero,
     shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.all(Radius.circular(14)),
+      borderRadius: BorderRadius.all(Radius.circular(Constants.radius)),
     ),
   ),
 
@@ -34,18 +34,18 @@ final theme = ThemeData(
   inputDecorationTheme: InputDecorationTheme(
     filled: true,
     contentPadding: const EdgeInsets.symmetric(
-      vertical: 16,
-      horizontal: 16,
+      vertical: Constants.padding,
+      horizontal: Constants.padding,
     ),
     focusedBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(16),
+      borderRadius: BorderRadius.circular(Constants.radius),
       borderSide: const BorderSide(color: Colors.transparent),
     ),
     enabledBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(16),
+      borderRadius: BorderRadius.circular(Constants.radius),
       borderSide: const BorderSide(color: Colors.transparent),
     ),
-    hintStyle: TextStyle(
+    hintStyle: const TextStyle(
       color: AppColors.hintColor,
       fontSize: 14,
       fontFamily: AppFonts.w400,

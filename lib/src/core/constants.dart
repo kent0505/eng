@@ -17,10 +17,11 @@ abstract final class AppFonts {
   static const String w700 = 'w700';
 }
 
-abstract final class Sizes {
-  static const double appBarSize = 60;
-  static const double navBarSize = 62;
-  static const double listViewPadding = 16;
+abstract final class Constants {
+  static const double appBarHeight = 60;
+  static const double navBarHeight = 62;
+  static const double padding = 16;
+  static const double radius = 10;
 }
 
 abstract final class Assets {

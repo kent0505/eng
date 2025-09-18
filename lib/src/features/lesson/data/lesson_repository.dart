@@ -7,6 +7,9 @@ abstract interface class LessonRepository {
   const LessonRepository();
 
   Future<List<Lesson>> getLessons();
+  Future<void> addLesson(Lesson lesson);
+  Future<void> editLesson(Lesson lesson);
+  Future<void> deleteLesson(Lesson lesson);
 }
 
 final class LessonRepositoryImpl implements LessonRepository {
@@ -27,6 +30,45 @@ final class LessonRepositoryImpl implements LessonRepository {
 
       return lessons;
     }
+
+    throw exception(response);
+  }
+
+  @override
+  Future<void> addLesson(Lesson lesson) async {
+    final response = await _dio.post(
+      '/api/v1/lesson/',
+      data: {
+        'title': lesson.title,
+        'content': lesson.content,
+      },
+    );
+
+    if (response.statusCode == 200) return;
+
+    throw exception(response);
+  }
+
+  @override
+  Future<void> editLesson(Lesson lesson) async {
+    final response = await _dio.put(
+      '/api/v1/lesson/?id=${lesson.id}',
+      data: {
+        'title': lesson.title,
+        'content': lesson.content,
+      },
+    );
+
+    if (response.statusCode == 200) return;
+
+    throw exception(response);
+  }
+
+  @override
+  Future<void> deleteLesson(Lesson lesson) async {
+    final response = await _dio.delete('/api/v1/lesson/?id=${lesson.id}');
+
+    if (response.statusCode == 200) return;
 
     throw exception(response);
   }

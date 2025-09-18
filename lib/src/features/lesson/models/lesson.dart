@@ -1,15 +1,15 @@
 class Lesson {
   Lesson({
-    required this.id,
+    this.id = 0,
     required this.title,
     required this.content,
-    required this.position,
+    this.position = 0,
   });
 
   final int id;
-  final String title;
-  final String content;
-  final double position;
+  String title;
+  String content;
+  double position;
 
   factory Lesson.fromJson(Map<String, dynamic> json) {
     return Lesson(

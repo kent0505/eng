@@ -14,6 +14,8 @@ import 'src/features/user/bloc/user_bloc.dart';
 import 'src/features/user/data/user_repository.dart';
 import 'src/features/home/bloc/home_bloc.dart';
 
+// adb tcpip 5555
+// adb connect 192.168.0.190
 // adb reverse tcp:8000 tcp:8000
 
 void main() async {

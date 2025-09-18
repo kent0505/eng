@@ -1,3 +1,4 @@
+import 'package:eng/src/core/widgets/loading_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../constants.dart';
@@ -11,6 +12,7 @@ class MainButton extends StatelessWidget {
     this.horizontal = 0,
     this.color,
     this.active = true,
+    this.loading = false,
     required this.onPressed,
   });
 
@@ -19,6 +21,7 @@ class MainButton extends StatelessWidget {
   final double horizontal;
   final Color? color;
   final bool active;
+  final bool loading;
   final VoidCallback onPressed;
 
   @override
@@ -30,21 +33,23 @@ class MainButton extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: horizontal),
       decoration: BoxDecoration(
         color: color ?? (active ? AppColors.accent : AppColors.error),
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(Constants.radius),
       ),
       child: Button(
-        onPressed: active ? onPressed : null,
+        onPressed: active && !loading ? onPressed : null,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              title,
-              style: TextStyle(
-                color: AppColors.black,
-                fontSize: 16,
-                fontFamily: AppFonts.w700,
-              ),
-            ),
+            loading
+                ? const LoadingWidget()
+                : Text(
+                    title,
+                    style: TextStyle(
+                      color: AppColors.black,
+                      fontSize: 16,
+                      fontFamily: AppFonts.w700,
+                    ),
+                  ),
           ],
         ),
       ),

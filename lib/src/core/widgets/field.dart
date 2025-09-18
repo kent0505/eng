@@ -5,6 +5,7 @@ import '../constants.dart';
 
 enum FieldType {
   text,
+  password,
   multiline,
   number,
   decimal,
@@ -16,6 +17,7 @@ class Field extends StatelessWidget {
     super.key,
     required this.controller,
     required this.hintText,
+    this.maxLength = 50,
     this.fieldType = FieldType.text,
     this.readOnly = false,
     this.onChanged,
@@ -24,6 +26,7 @@ class Field extends StatelessWidget {
 
   final TextEditingController controller;
   final String hintText;
+  final int? maxLength;
   final bool readOnly;
   final FieldType fieldType;
   final void Function(String)? onChanged;
@@ -35,24 +38,26 @@ class Field extends StatelessWidget {
       controller: controller,
       keyboardType: switch (fieldType) {
         FieldType.text => TextInputType.text,
+        FieldType.password => TextInputType.text,
         FieldType.multiline => TextInputType.multiline,
         FieldType.number => TextInputType.number,
         FieldType.decimal => TextInputType.numberWithOptions(decimal: true),
         FieldType.phone => TextInputType.phone,
       },
+      obscureText: fieldType == FieldType.password,
       readOnly: readOnly,
       showCursor: !readOnly,
       enableInteractiveSelection: !readOnly,
       inputFormatters: [
-        LengthLimitingTextInputFormatter(60),
+        LengthLimitingTextInputFormatter(maxLength),
         if (fieldType == FieldType.number)
           FilteringTextInputFormatter.digitsOnly,
         if (fieldType == FieldType.decimal) _SingleDotInputFormatter(),
         if (fieldType == FieldType.phone) _PhoneInputFormatter()
       ],
       textCapitalization: TextCapitalization.sentences,
-      minLines: 1,
-      maxLines: fieldType == FieldType.multiline ? 10 : 1,
+      minLines: fieldType == FieldType.multiline ? 10 : 1,
+      maxLines: fieldType == FieldType.multiline ? null : 1,
       style: TextStyle(
         color: AppColors.black,
         fontSize: 14,

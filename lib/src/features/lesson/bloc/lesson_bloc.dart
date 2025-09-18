@@ -16,6 +16,9 @@ class LessonBloc extends Bloc<LessonEvent, LessonState> {
     on<LessonEvent>(
       (event, emit) => switch (event) {
         GetLessons() => _getLesson(event, emit),
+        AddLesson() => _addLesson(event, emit),
+        EditLesson() => _editLesson(event, emit),
+        DeleteLesson() => _deleteLesson(event, emit),
       },
     );
   }
@@ -26,6 +29,48 @@ class LessonBloc extends Bloc<LessonEvent, LessonState> {
   ) async {
     emit(LessonLoading());
     try {
+      final lessons = await _repository.getLessons();
+      emit(LessonsLoaded(lessons: lessons));
+    } catch (e) {
+      emit(LessonError(error: e.toString()));
+    }
+  }
+
+  void _addLesson(
+    AddLesson event,
+    Emitter<LessonState> emit,
+  ) async {
+    emit(LessonLoading());
+    try {
+      await _repository.addLesson(event.lesson);
+      final lessons = await _repository.getLessons();
+      emit(LessonsLoaded(lessons: lessons));
+    } catch (e) {
+      emit(LessonError(error: e.toString()));
+    }
+  }
+
+  void _editLesson(
+    EditLesson event,
+    Emitter<LessonState> emit,
+  ) async {
+    emit(LessonLoading());
+    try {
+      await _repository.editLesson(event.lesson);
+      final lessons = await _repository.getLessons();
+      emit(LessonsLoaded(lessons: lessons));
+    } catch (e) {
+      emit(LessonError(error: e.toString()));
+    }
+  }
+
+  void _deleteLesson(
+    DeleteLesson event,
+    Emitter<LessonState> emit,
+  ) async {
+    emit(LessonLoading());
+    try {
+      await _repository.deleteLesson(event.lesson);
       final lessons = await _repository.getLessons();
       emit(LessonsLoaded(lessons: lessons));
     } catch (e) {

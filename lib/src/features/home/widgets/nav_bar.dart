@@ -14,7 +14,8 @@ class NavBar extends StatelessWidget {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
-        height: Sizes.navBarSize + MediaQuery.of(context).viewPadding.bottom,
+        height:
+            Constants.navBarHeight + MediaQuery.of(context).viewPadding.bottom,
         padding: EdgeInsets.symmetric(horizontal: 16),
         decoration: BoxDecoration(
           color: AppColors.white,
@@ -83,7 +84,7 @@ class _NavBarButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             AnimatedSwitcher(
-              duration: const Duration(milliseconds: 600),
+              duration: const Duration(milliseconds: 400),
               transitionBuilder: (child, animation) {
                 return FadeTransition(
                   opacity: animation,

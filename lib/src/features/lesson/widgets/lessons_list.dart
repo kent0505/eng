@@ -24,10 +24,13 @@ class LessonsList extends StatelessWidget {
               context.read<LessonBloc>().add(GetLessons());
             },
             child: ListView.builder(
-              padding: EdgeInsets.all(Sizes.listViewPadding),
+              padding: EdgeInsets.all(Constants.padding),
               itemCount: state.lessons.length,
               itemBuilder: (context, index) {
-                return LessonTile(lesson: state.lessons[index]);
+                return LessonTile(
+                  lesson: state.lessons[index],
+                  index: index,
+                );
               },
             ),
           );

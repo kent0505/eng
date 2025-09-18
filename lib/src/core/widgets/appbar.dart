@@ -18,7 +18,7 @@ class Appbar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? right;
   final Widget? child;
 
-  final appBarSize = Sizes.appBarSize;
+  final appBarSize = Constants.appBarHeight;
 
   @override
   Size get preferredSize => Size.fromHeight(appBarSize);
@@ -57,7 +57,7 @@ class Appbar extends StatelessWidget implements PreferredSizeWidget {
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(
-                      color: Colors.black,
+                      color: AppColors.black,
                       fontSize: 18,
                       fontFamily: AppFonts.w700,
                       height: 1,
