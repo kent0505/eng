@@ -33,7 +33,7 @@ class LessonScreen extends StatelessWidget {
                 );
               },
               minSize: 60,
-              child: Icon(Icons.edit_rounded),
+              child: const Icon(Icons.edit_rounded),
             ),
             Button(
               onPressed: () {
@@ -51,7 +51,7 @@ class LessonScreen extends StatelessWidget {
                 );
               },
               minSize: 60,
-              child: Icon(Icons.delete_rounded),
+              child: const Icon(Icons.delete_rounded),
             ),
           ],
         ),
@@ -61,11 +61,11 @@ class LessonScreen extends StatelessWidget {
         child: MarkdownBody(
           data: lesson.content,
           styleSheet: MarkdownStyleSheet(
-            p: TextStyle(
+            p: const TextStyle(
               color: Colors.redAccent,
               fontSize: 20,
             ),
-            strong: TextStyle(
+            strong: const TextStyle(
               color: Colors.black,
               fontSize: 24,
               fontWeight: FontWeight.w900,

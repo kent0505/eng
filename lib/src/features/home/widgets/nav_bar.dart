@@ -16,8 +16,8 @@ class NavBar extends StatelessWidget {
       child: Container(
         height:
             Constants.navBarHeight + MediaQuery.of(context).viewPadding.bottom,
-        padding: EdgeInsets.symmetric(horizontal: 16),
-        decoration: BoxDecoration(
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        decoration: const BoxDecoration(
           color: AppColors.white,
         ),
         child: BlocBuilder<HomeBloc, HomeState>(
@@ -35,10 +35,10 @@ class NavBar extends StatelessWidget {
                 ),
                 _NavBarButton(
                   index: 2,
-                  title: 'Favorites',
+                  title: 'Words',
                   asset: Assets.profile1,
                   asset2: Assets.profile2,
-                  active: state is HomeFavorite,
+                  active: state is HomeWords,
                 ),
                 _NavBarButton(
                   index: 3,
@@ -102,7 +102,7 @@ class _NavBarButton extends StatelessWidget {
               textAlign: TextAlign.center,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
-              style: TextStyle(
+              style: const TextStyle(
                 color: AppColors.black,
                 fontSize: 12,
                 fontFamily: AppFonts.w500,

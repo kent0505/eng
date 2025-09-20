@@ -20,5 +20,6 @@ final class UserRepositoryImpl implements UserRepository {
   @override
   Future<void> clear() async {
     await _prefs.clear();
+    _dio.toString();
   }
 }

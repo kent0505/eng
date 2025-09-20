@@ -13,6 +13,8 @@ import 'src/features/lesson/data/lesson_repository.dart';
 import 'src/features/user/bloc/user_bloc.dart';
 import 'src/features/user/data/user_repository.dart';
 import 'src/features/home/bloc/home_bloc.dart';
+import 'src/features/word/bloc/word_bloc.dart';
+import 'src/features/word/data/word_repository.dart';
 
 // adb tcpip 5555
 // adb connect 192.168.0.190
@@ -25,13 +27,13 @@ void main() async {
     DeviceOrientation.portraitDown,
   ]);
 
-  await dotenv.load(fileName: ".env");
+  await dotenv.load(fileName: '.env');
 
   final prefs = await SharedPreferences.getInstance();
 
   final baseUrl = dotenv.env['BASE_URL'] ?? '';
   final token = prefs.getString(Keys.token) ?? dotenv.env['TOKEN'] ?? '';
-  final timeout = const Duration(seconds: 10);
+  const timeout = Duration(seconds: 10);
 
   final dio = Dio(
     BaseOptions(
@@ -59,6 +61,9 @@ void main() async {
         RepositoryProvider<LessonRepository>(
           create: (context) => LessonRepositoryImpl(dio: dio),
         ),
+        RepositoryProvider<WordRepository>(
+          create: (context) => WordRepositoryImpl(dio: dio),
+        ),
       ],
       child: MultiBlocProvider(
         providers: [
@@ -72,6 +77,11 @@ void main() async {
             create: (context) => LessonBloc(
               repository: context.read<LessonRepository>(),
             )..add(GetLessons()),
+          ),
+          BlocProvider(
+            create: (context) => WordBloc(
+              repository: context.read<WordRepository>(),
+            )..add(GetWords()),
           ),
         ],
         child: MaterialApp.router(

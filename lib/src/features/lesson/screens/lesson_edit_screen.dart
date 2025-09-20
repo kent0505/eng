@@ -81,7 +81,7 @@ class _LessonEditScreenState extends State<LessonEditScreen> {
         children: [
           Expanded(
             child: ListView(
-              padding: EdgeInsets.all(Constants.padding),
+              padding: const EdgeInsets.all(Constants.padding),
               children: [
                 Field(
                   controller: titleController,
@@ -111,7 +111,7 @@ class _LessonEditScreenState extends State<LessonEditScreen> {
             },
             builder: (context, state) {
               return Container(
-                padding: EdgeInsets.all(Constants.padding),
+                padding: const EdgeInsets.all(Constants.padding),
                 child: MainButton(
                   title: 'Save',
                   loading: state is LessonLoading,

@@ -3,29 +3,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/constants.dart';
 import '../../../core/utils.dart';
-import '../../../core/widgets/field.dart';
-import '../../../core/widgets/main_button.dart';
 import '../../lesson/widgets/lessons_list.dart';
+import '../../word/widgets/words_list.dart';
 import '../bloc/home_bloc.dart';
 import '../widgets/home_appbar.dart';
 import '../widgets/nav_bar.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   static const routePath = '/HomeScreen';
-
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-  final controller1 = TextEditingController();
-  final controller2 = TextEditingController();
-  final controller3 = TextEditingController();
-  final controller4 = TextEditingController();
-  final controller5 = TextEditingController();
-  final controller6 = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -50,60 +37,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 return IndexedStack(
                   index: switch (state) {
                     HomeInitial() => 0,
-                    HomeFavorite() => 1,
+                    HomeWords() => 1,
                     HomeSettings() => 2,
                   },
-                  children: [
-                    const LessonsList(),
-                    ListView(
-                      padding: EdgeInsets.all(Constants.padding),
-                      children: [
-                        MainButton(
-                          title: 'Test',
-                          active: controller1.text.isNotEmpty,
-                          onPressed: () {},
-                        ),
-                        const SizedBox(height: 10),
-                        Field(
-                          controller: controller1,
-                          hintText: 'Text',
-                          onChanged: (_) {
-                            setState(() {});
-                          },
-                        ),
-                        const SizedBox(height: 10),
-                        Field(
-                          controller: controller2,
-                          hintText: 'Password',
-                          fieldType: FieldType.password,
-                        ),
-                        const SizedBox(height: 10),
-                        Field(
-                          controller: controller3,
-                          hintText: 'Multiline',
-                          fieldType: FieldType.multiline,
-                        ),
-                        const SizedBox(height: 10),
-                        Field(
-                          controller: controller4,
-                          hintText: 'Number',
-                          fieldType: FieldType.number,
-                        ),
-                        const SizedBox(height: 10),
-                        Field(
-                          controller: controller5,
-                          hintText: 'Decimal',
-                          fieldType: FieldType.decimal,
-                        ),
-                        const SizedBox(height: 10),
-                        Field(
-                          controller: controller6,
-                          hintText: 'Phone',
-                          fieldType: FieldType.phone,
-                        ),
-                      ],
-                    ),
-                    const Placeholder(),
+                  children: const [
+                    LessonsList(),
+                    WordsList(),
+                    Placeholder(),
                   ],
                 );
               },

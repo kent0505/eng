@@ -44,7 +44,7 @@ class Appbar extends StatelessWidget implements PreferredSizeWidget {
                     logger(e);
                   }
                 },
-                child: SvgWidget(
+                child: const SvgWidget(
                   Assets.back,
                   height: 24,
                 ),
@@ -56,7 +56,7 @@ class Appbar extends StatelessWidget implements PreferredSizeWidget {
                     textAlign: TextAlign.center,
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: AppColors.black,
                       fontSize: 18,
                       fontFamily: AppFonts.w700,

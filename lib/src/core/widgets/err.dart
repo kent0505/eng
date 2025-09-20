@@ -21,7 +21,7 @@ class Err extends StatelessWidget {
         children: [
           Text(
             error,
-            style: TextStyle(
+            style: const TextStyle(
               color: AppColors.black,
               fontSize: 16,
               fontFamily: AppFonts.w400,
@@ -30,7 +30,7 @@ class Err extends StatelessWidget {
           const SizedBox(height: 20),
           Button(
             onPressed: onReload,
-            child: Text('Reload'),
+            child: const Text('Reload'),
           ),
         ],
       ),

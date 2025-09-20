@@ -41,7 +41,8 @@ class Field extends StatelessWidget {
         FieldType.password => TextInputType.text,
         FieldType.multiline => TextInputType.multiline,
         FieldType.number => TextInputType.number,
-        FieldType.decimal => TextInputType.numberWithOptions(decimal: true),
+        FieldType.decimal =>
+          const TextInputType.numberWithOptions(decimal: true),
         FieldType.phone => TextInputType.phone,
       },
       obscureText: fieldType == FieldType.password,
@@ -58,7 +59,7 @@ class Field extends StatelessWidget {
       textCapitalization: TextCapitalization.sentences,
       minLines: fieldType == FieldType.multiline ? 10 : 1,
       maxLines: fieldType == FieldType.multiline ? null : 1,
-      style: TextStyle(
+      style: const TextStyle(
         color: AppColors.black,
         fontSize: 14,
         fontFamily: AppFonts.w500,

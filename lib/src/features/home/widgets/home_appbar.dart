@@ -23,12 +23,12 @@ class HomeAppbar extends StatelessWidget implements PreferredSizeWidget {
       padding: EdgeInsets.only(top: top),
       child: Row(
         children: [
-          SizedBox(width: Constants.padding),
+          const SizedBox(width: Constants.padding),
           Text(
             switch (state) {
               HomeInitial() => 'Home',
-              HomeFavorite() => 'Favorites',
-              HomeSettings() => 'Settings',
+              HomeWords() => 'Words',
+              HomeSettings() => 'Profile',
             },
             style: const TextStyle(
               color: Colors.black,
@@ -44,7 +44,7 @@ class HomeAppbar extends StatelessWidget implements PreferredSizeWidget {
                 extra: null,
               );
             },
-            child: Icon(
+            child: const Icon(
               Icons.add,
             ),
           ),

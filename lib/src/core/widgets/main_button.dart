@@ -44,7 +44,7 @@ class MainButton extends StatelessWidget {
                 ? const LoadingWidget()
                 : Text(
                     title,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: AppColors.black,
                       fontSize: 16,
                       fontFamily: AppFonts.w700,
