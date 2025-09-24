@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/widgets/button.dart';
 import '../../../core/constants.dart';
-import '../../../core/widgets/svg_widget.dart';
 import '../bloc/home_bloc.dart';
 
 class NavBar extends StatelessWidget {
@@ -31,6 +30,7 @@ class NavBar extends StatelessWidget {
                   title: 'Home',
                   asset: Assets.home1,
                   asset2: Assets.home2,
+                  icon: Icons.home,
                   active: state is HomeInitial,
                 ),
                 _NavBarButton(
@@ -38,6 +38,7 @@ class NavBar extends StatelessWidget {
                   title: 'Words',
                   asset: Assets.profile1,
                   asset2: Assets.profile2,
+                  icon: Icons.list,
                   active: state is HomeWords,
                 ),
                 _NavBarButton(
@@ -45,6 +46,7 @@ class NavBar extends StatelessWidget {
                   title: 'Profile',
                   asset: Assets.profile1,
                   asset2: Assets.profile2,
+                  icon: Icons.person,
                   active: state is HomeSettings,
                 ),
               ],
@@ -61,6 +63,7 @@ class _NavBarButton extends StatelessWidget {
     required this.index,
     required this.asset,
     required this.asset2,
+    required this.icon,
     required this.title,
     required this.active,
   });
@@ -68,6 +71,7 @@ class _NavBarButton extends StatelessWidget {
   final String title;
   final String asset;
   final String asset2;
+  final IconData icon;
   final int index;
   final bool active;
 
@@ -84,18 +88,22 @@ class _NavBarButton extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             AnimatedSwitcher(
-              duration: const Duration(milliseconds: 400),
-              transitionBuilder: (child, animation) {
-                return FadeTransition(
-                  opacity: animation,
-                  child: child,
-                );
-              },
-              child: SvgWidget(
-                active ? asset2 : asset,
-                key: ValueKey(active),
-              ),
-            ),
+                duration: const Duration(milliseconds: 400),
+                transitionBuilder: (child, animation) {
+                  return FadeTransition(
+                    opacity: animation,
+                    child: child,
+                  );
+                },
+                child: Icon(
+                  icon,
+                  color: active ? AppColors.accent : null,
+                )
+                // SvgWidget(
+                //   active ? asset2 : asset,
+                //   key: ValueKey(active),
+                // ),
+                ),
             const SizedBox(height: 4),
             Text(
               title,

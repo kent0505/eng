@@ -40,7 +40,7 @@ final class LessonRepositoryImpl implements LessonRepository {
       '/api/v1/lesson/',
       data: {
         'title': lesson.title,
-        'content': lesson.content,
+        'data': lesson.data,
       },
     );
 
@@ -55,7 +55,7 @@ final class LessonRepositoryImpl implements LessonRepository {
       '/api/v1/lesson/?id=${lesson.id}',
       data: {
         'title': lesson.title,
-        'content': lesson.content,
+        'data': lesson.data,
       },
     );
 

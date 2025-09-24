@@ -40,7 +40,7 @@ class _LessonEditScreenState extends State<LessonEditScreen> {
 
   void onSave() {
     lesson.title = titleController.text;
-    lesson.content = contentController.text;
+    lesson.data = contentController.text;
 
     context.read<LessonBloc>().add(
           widget.lesson == null
@@ -55,12 +55,12 @@ class _LessonEditScreenState extends State<LessonEditScreen> {
     if (widget.lesson == null) {
       lesson = Lesson(
         title: titleController.text,
-        content: contentController.text,
+        data: contentController.text,
       );
     } else {
       lesson = widget.lesson!;
       titleController.text = lesson.title;
-      contentController.text = lesson.content;
+      contentController.text = lesson.data;
     }
   }
 

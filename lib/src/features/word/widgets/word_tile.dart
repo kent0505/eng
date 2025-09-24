@@ -5,18 +5,16 @@ import '../../../core/widgets/button.dart';
 import '../models/word.dart';
 
 class WordTile extends StatelessWidget {
-  const WordTile({
-    super.key,
-    required this.word,
-    required this.index,
-  });
+  const WordTile({super.key, required this.word});
 
   final Word word;
-  final int index;
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.sizeOf(context).width / 2 - Constants.padding;
+
     return Button(
+      minSize: 30,
       onPressed: () {
         // context.push(
         //   LessonScreen.routePath,
@@ -24,18 +22,27 @@ class WordTile extends StatelessWidget {
         // );
       },
       child: Container(
-        height: 50,
-        padding: const EdgeInsets.all(10),
-        margin: const EdgeInsets.only(bottom: 10),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(Constants.radius),
+        decoration: const BoxDecoration(
+          border: Border(
+            bottom: BorderSide(
+              width: 1,
+              color: AppColors.overScroll,
+            ),
+          ),
         ),
         child: Row(
           children: [
-            Text(word.en),
-            const Spacer(),
-            Text(word.ru),
+            SizedBox(
+              width: width,
+              child: Text(word.en),
+            ),
+            SizedBox(
+              width: width,
+              child: Text(
+                word.ru,
+                textAlign: TextAlign.end,
+              ),
+            ),
           ],
         ),
       ),

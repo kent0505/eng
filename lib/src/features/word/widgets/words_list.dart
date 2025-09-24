@@ -19,11 +19,6 @@ class WordsList extends StatelessWidget {
         }
 
         if (state is WordsLoaded) {
-          List<int> indexes = List.generate(
-            state.words.length,
-            (index) => index,
-          )..shuffle();
-
           return RefreshIndicator(
             onRefresh: () async {
               context.read<WordBloc>().add(GetWords());
@@ -32,10 +27,7 @@ class WordsList extends StatelessWidget {
               padding: const EdgeInsets.all(Constants.padding),
               itemCount: state.words.length,
               itemBuilder: (context, index) {
-                return WordTile(
-                  word: state.words[index],
-                  index: indexes[index],
-                );
+                return WordTile(word: state.words[index]);
               },
             ),
           );

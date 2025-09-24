@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../core/constants.dart';
 import '../../../core/widgets/err.dart';
 import '../../../core/widgets/loading_widget.dart';
 import '../bloc/lesson_bloc.dart';
@@ -29,7 +28,6 @@ class LessonsList extends StatelessWidget {
               context.read<LessonBloc>().add(GetLessons());
             },
             child: ListView.builder(
-              padding: const EdgeInsets.all(Constants.padding),
               itemCount: state.lessons.length,
               itemBuilder: (context, index) {
                 return LessonTile(

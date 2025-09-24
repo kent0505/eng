@@ -16,16 +16,23 @@ final class WordRepositoryImpl implements WordRepository {
 
   @override
   Future<List<Word>> getWords() async {
-    final response = await _dio.get('/api/v1/client/words');
+    final response = await _dio.get(
+      '/api/v1/client/words',
+      options: Options(responseType: ResponseType.plain),
+    );
 
     if (response.statusCode == 200) {
-      List data = response.data['words'];
+      final content = response.data as String;
+      final lines = content.split('\n');
 
-      List<Word> words = data.map((json) {
-        return Word.fromJson(json);
+      return lines.where((line) => line.trim().isNotEmpty).map((line) {
+        final parts = line.split(' - ');
+
+        return Word(
+          en: parts[0].trim(),
+          ru: parts.length > 1 ? parts[1].trim() : '',
+        );
       }).toList();
-
-      return words;
     }
 
     throw exception(response);
