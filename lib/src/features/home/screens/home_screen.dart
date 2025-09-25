@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../core/constants.dart';
 import '../../../core/utils.dart';
 import '../../lesson/widgets/lessons_list.dart';
+import '../../user/widgets/user_widget.dart';
 import '../../word/widgets/words_list.dart';
 import '../bloc/home_bloc.dart';
 import '../widgets/home_appbar.dart';
@@ -43,7 +44,7 @@ class HomeScreen extends StatelessWidget {
                   children: const [
                     LessonsList(),
                     WordsList(),
-                    Placeholder(),
+                    UserWidget(),
                   ],
                 );
               },

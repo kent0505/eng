@@ -20,6 +20,7 @@ class Field extends StatelessWidget {
     this.maxLength = 50,
     this.fieldType = FieldType.text,
     this.readOnly = false,
+    this.textCapitalization = TextCapitalization.sentences,
     this.onChanged,
     this.onTap,
   });
@@ -29,6 +30,7 @@ class Field extends StatelessWidget {
   final int? maxLength;
   final bool readOnly;
   final FieldType fieldType;
+  final TextCapitalization textCapitalization;
   final void Function(String)? onChanged;
   final void Function()? onTap;
 
@@ -56,7 +58,7 @@ class Field extends StatelessWidget {
         if (fieldType == FieldType.decimal) _SingleDotInputFormatter(),
         if (fieldType == FieldType.phone) _PhoneInputFormatter()
       ],
-      textCapitalization: TextCapitalization.sentences,
+      textCapitalization: textCapitalization,
       minLines: fieldType == FieldType.multiline ? 10 : 1,
       maxLines: fieldType == FieldType.multiline ? null : 1,
       style: const TextStyle(

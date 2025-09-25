@@ -16,6 +16,8 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<UserEvent>(
       (event, emit) => switch (event) {
         GetUser() => _getUser(event, emit),
+        UserLogin() => _userLogin(event, emit),
+        UserRegister() => _userRegister(event, emit),
       },
     );
   }
@@ -23,7 +25,17 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   void _getUser(
     GetUser event,
     Emitter<UserState> emit,
-  ) {
+  ) async {
     logger(_repository.runtimeType);
   }
+
+  void _userLogin(
+    UserLogin event,
+    Emitter<UserState> emit,
+  ) async {}
+
+  void _userRegister(
+    UserRegister event,
+    Emitter<UserState> emit,
+  ) async {}
 }
