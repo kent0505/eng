@@ -66,7 +66,11 @@ class Field extends StatelessWidget {
         fontSize: 14,
         fontFamily: AppFonts.w500,
       ),
-      decoration: InputDecoration(hintText: hintText),
+      decoration: InputDecoration(
+        hintText: hintText,
+        // errorText: 'Aaa',
+        // errorBorder: InputBorder.none,
+      ),
       onTapOutside: (event) {
         FocusManager.instance.primaryFocus?.unfocus();
       },

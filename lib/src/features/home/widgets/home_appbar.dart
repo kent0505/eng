@@ -37,17 +37,16 @@ class HomeAppbar extends StatelessWidget implements PreferredSizeWidget {
             ),
           ),
           const Spacer(),
-          Button(
-            onPressed: () {
-              context.push(
-                LessonEditScreen.routePath,
-                extra: null,
-              );
-            },
-            child: const Icon(
-              Icons.add,
+          if (state is HomeInitial)
+            Button(
+              onPressed: () {
+                context.push(
+                  LessonEditScreen.routePath,
+                  extra: null,
+                );
+              },
+              child: const Icon(Icons.add),
             ),
-          ),
         ],
       ),
     );

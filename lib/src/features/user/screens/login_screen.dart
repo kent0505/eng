@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/constants.dart';
+import '../../../core/widgets/appbar.dart';
 import '../../../core/widgets/button.dart';
 import '../../../core/widgets/field.dart';
 import '../../../core/widgets/main_button.dart';
@@ -19,18 +20,8 @@ class _AuthScreenState extends State<AuthScreen> {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
 
-  bool login = true;
-
-  void onLoginOrRegister() {
+  void onLogin() {
     context.read();
-  }
-
-  void change() {
-    setState(() {
-      usernameController.clear();
-      passwordController.clear();
-      login = !login;
-    });
   }
 
   @override
@@ -44,6 +35,7 @@ class _AuthScreenState extends State<AuthScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      appBar: const Appbar(title: 'Login'),
       body: Padding(
         padding: const EdgeInsets.all(Constants.padding),
         child: Column(
@@ -62,13 +54,13 @@ class _AuthScreenState extends State<AuthScreen> {
             ),
             const SizedBox(height: Constants.padding),
             MainButton(
-              title: login ? 'Login' : 'Register',
-              onPressed: onLoginOrRegister,
+              title: 'Login',
+              onPressed: onLogin,
             ),
             const SizedBox(height: Constants.padding),
             Button(
-              onPressed: change,
-              child: Text(login ? 'Register' : 'Login'),
+              onPressed: () {},
+              child: const Text('Login'),
             ),
           ],
         ),

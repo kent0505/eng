@@ -11,5 +11,6 @@ int getTimestamp() {
 }
 
 Exception exception(Response response) {
+  logger(response.statusCode.toString());
   return Exception(response.data['detail']);
 }

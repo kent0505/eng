@@ -5,7 +5,7 @@ import '../features/lesson/models/lesson.dart';
 import '../features/lesson/screens/lesson_edit_screen.dart';
 import '../features/lesson/screens/lesson_screen.dart';
 import '../features/splash/screens/splash_screen.dart';
-import '../features/user/screens/auth_screen.dart';
+import '../features/user/screens/login_screen.dart';
 
 final routerConfig = GoRouter(
   initialLocation: '/',

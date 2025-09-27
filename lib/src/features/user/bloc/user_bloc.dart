@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/utils.dart';
 import '../data/user_repository.dart';
+import '../models/login.dart';
+import '../models/user.dart';
 
 part 'user_event.dart';
 part 'user_state.dart';
@@ -16,8 +18,9 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<UserEvent>(
       (event, emit) => switch (event) {
         GetUser() => _getUser(event, emit),
-        UserLogin() => _userLogin(event, emit),
-        UserRegister() => _userRegister(event, emit),
+        LoginEvent() => _loginEvent(event, emit),
+        RegisterEvent() => _registerEvent(event, emit),
+        LogoutEvent() => _logoutEvent(event, emit),
       },
     );
   }
@@ -26,16 +29,40 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     GetUser event,
     Emitter<UserState> emit,
   ) async {
-    logger(_repository.runtimeType);
+    emit(UserLoading());
+    try {
+      final user = await _repository.getUser();
+
+      logger(user.toJson());
+
+      emit(UserLogined(user: user));
+    } catch (e) {
+      logger(e);
+      emit(UserInitial());
+    }
   }
 
-  void _userLogin(
-    UserLogin event,
+  void _loginEvent(
+    LoginEvent event,
+    Emitter<UserState> emit,
+  ) async {
+    try {
+      await _repository.login(event.auth);
+    } catch (e) {
+      logger(e);
+    }
+  }
+
+  void _registerEvent(
+    RegisterEvent event,
     Emitter<UserState> emit,
   ) async {}
 
-  void _userRegister(
-    UserRegister event,
+  void _logoutEvent(
+    LogoutEvent event,
     Emitter<UserState> emit,
-  ) async {}
+  ) async {
+    await _repository.logout();
+    emit(UserInitial());
+  }
 }

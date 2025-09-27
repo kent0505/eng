@@ -45,6 +45,10 @@ final theme = ThemeData(
       borderRadius: BorderRadius.circular(Constants.radius),
       borderSide: const BorderSide(color: Colors.transparent),
     ),
+    errorBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(Constants.radius),
+      borderSide: const BorderSide(color: Colors.transparent),
+    ),
     hintStyle: const TextStyle(
       color: AppColors.hintColor,
       fontSize: 14,

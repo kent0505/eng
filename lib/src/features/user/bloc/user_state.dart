@@ -7,4 +7,8 @@ final class UserInitial extends UserState {}
 
 final class UserLoading extends UserState {}
 
-final class UserLogined extends UserState {}
+final class UserLogined extends UserState {
+  UserLogined({required this.user});
+
+  final User user;
+}

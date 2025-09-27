@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../core/widgets/main_button.dart';
 import '../bloc/user_bloc.dart';
-import '../screens/auth_screen.dart';
+import '../screens/login_screen.dart';
 
 class UserWidget extends StatelessWidget {
   const UserWidget({super.key});
@@ -27,6 +27,21 @@ class UserWidget extends StatelessWidget {
                 ],
               );
             }
+
+            if (state is UserLogined) {
+              return Column(
+                children: [
+                  Text(state.user.username),
+                  MainButton(
+                    title: 'Logout',
+                    onPressed: () {
+                      context.read<UserBloc>().add(LogoutEvent());
+                    },
+                  ),
+                ],
+              );
+            }
+
             return const Text('data');
           },
         ),

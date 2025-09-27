@@ -19,9 +19,9 @@ class Err extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(
-            error,
-            style: const TextStyle(
+          const Text(
+            'Service is currently unavailable. Please try again later.',
+            style: TextStyle(
               color: AppColors.black,
               fontSize: 16,
               fontFamily: AppFonts.w400,

@@ -71,7 +71,7 @@ void main() async {
           BlocProvider(
             create: (context) => UserBloc(
               repository: context.read<UserRepository>(),
-            ),
+            )..add(GetUser()),
           ),
           BlocProvider(
             create: (context) => LessonBloc(
