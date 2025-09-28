@@ -1,0 +1,55 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../core/constants.dart';
+import '../../../core/widgets/appbar.dart';
+import '../../../core/widgets/err.dart';
+import '../../../core/widgets/loading_widget.dart';
+import '../bloc/word_bloc.dart';
+import '../widgets/word_tile.dart';
+
+class WordsScreen extends StatelessWidget {
+  const WordsScreen({super.key});
+
+  static const routePath = '/WordsScreen';
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: const Appbar(title: 'Words'),
+      body: BlocBuilder<WordBloc, WordState>(
+        builder: (context, state) {
+          if (state is WordsLoading) {
+            return const LoadingWidget();
+          }
+
+          if (state is WordsLoaded) {
+            return RefreshIndicator(
+              onRefresh: () async {
+                context.read<WordBloc>().add(GetWords());
+              },
+              child: ListView.builder(
+                padding: const EdgeInsets.all(Constants.padding),
+                itemCount: state.words.length,
+                itemBuilder: (context, index) {
+                  return WordTile(word: state.words[index]);
+                },
+              ),
+            );
+          }
+
+          if (state is WordError) {
+            return Err(
+              error: state.error,
+              onReload: () {
+                context.read<WordBloc>().add(GetWords());
+              },
+            );
+          }
+
+          return const SizedBox();
+        },
+      ),
+    );
+  }
+}

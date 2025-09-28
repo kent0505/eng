@@ -27,7 +27,7 @@ class LessonBloc extends Bloc<LessonEvent, LessonState> {
     GetLessons event,
     Emitter<LessonState> emit,
   ) async {
-    emit(LessonLoading());
+    emit(LessonsLoading());
     try {
       final lessons = await _repository.getLessons();
       emit(LessonsLoaded(lessons: lessons));
@@ -40,7 +40,7 @@ class LessonBloc extends Bloc<LessonEvent, LessonState> {
     AddLesson event,
     Emitter<LessonState> emit,
   ) async {
-    emit(LessonLoading());
+    emit(LessonsLoading());
     try {
       await _repository.addLesson(event.lesson);
       final lessons = await _repository.getLessons();
@@ -54,7 +54,7 @@ class LessonBloc extends Bloc<LessonEvent, LessonState> {
     EditLesson event,
     Emitter<LessonState> emit,
   ) async {
-    emit(LessonLoading());
+    emit(LessonsLoading());
     try {
       await _repository.editLesson(event.lesson);
       final lessons = await _repository.getLessons();
@@ -68,7 +68,7 @@ class LessonBloc extends Bloc<LessonEvent, LessonState> {
     DeleteLesson event,
     Emitter<LessonState> emit,
   ) async {
-    emit(LessonLoading());
+    emit(LessonsLoading());
     try {
       await _repository.deleteLesson(event.lesson);
       final lessons = await _repository.getLessons();

@@ -114,7 +114,7 @@ class _LessonEditScreenState extends State<LessonEditScreen> {
                 padding: const EdgeInsets.all(Constants.padding),
                 child: MainButton(
                   title: 'Save',
-                  loading: state is LessonLoading,
+                  loading: state is LessonsLoading,
                   active: active,
                   onPressed: onSave,
                 ),

@@ -36,13 +36,10 @@ final class LessonRepositoryImpl implements LessonRepository {
 
   @override
   Future<void> addLesson(Lesson lesson) async {
-    final response = await _dio.post(
-      '/api/v1/lesson/',
-      data: {
-        'title': lesson.title,
-        'data': lesson.data,
-      },
-    );
+    final response = await _dio.post('/api/v1/lesson/', data: {
+      'title': lesson.title,
+      'data': lesson.data,
+    });
 
     if (response.statusCode == 200) return;
 
@@ -51,13 +48,10 @@ final class LessonRepositoryImpl implements LessonRepository {
 
   @override
   Future<void> editLesson(Lesson lesson) async {
-    final response = await _dio.put(
-      '/api/v1/lesson/?id=${lesson.id}',
-      data: {
-        'title': lesson.title,
-        'data': lesson.data,
-      },
-    );
+    final response = await _dio.put('/api/v1/lesson/?id=${lesson.id}', data: {
+      'title': lesson.title,
+      'data': lesson.data,
+    });
 
     if (response.statusCode == 200) return;
 

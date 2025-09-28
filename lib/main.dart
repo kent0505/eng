@@ -8,11 +8,12 @@ import 'package:dio/dio.dart';
 import 'src/core/constants.dart';
 import 'src/core/router.dart';
 import 'src/core/themes.dart';
+import 'src/features/article/bloc/article_bloc.dart';
+import 'src/features/article/data/article_repository.dart';
 import 'src/features/lesson/bloc/lesson_bloc.dart';
 import 'src/features/lesson/data/lesson_repository.dart';
 import 'src/features/user/bloc/user_bloc.dart';
 import 'src/features/user/data/user_repository.dart';
-import 'src/features/home/bloc/home_bloc.dart';
 import 'src/features/word/bloc/word_bloc.dart';
 import 'src/features/word/data/word_repository.dart';
 
@@ -64,10 +65,12 @@ void main() async {
         RepositoryProvider<WordRepository>(
           create: (context) => WordRepositoryImpl(dio: dio),
         ),
+        RepositoryProvider<ArticleRepository>(
+          create: (context) => ArticleRepositoryImpl(dio: dio),
+        ),
       ],
       child: MultiBlocProvider(
         providers: [
-          BlocProvider(create: (context) => HomeBloc()),
           BlocProvider(
             create: (context) => UserBloc(
               repository: context.read<UserRepository>(),
@@ -82,6 +85,11 @@ void main() async {
             create: (context) => WordBloc(
               repository: context.read<WordRepository>(),
             )..add(GetWords()),
+          ),
+          BlocProvider(
+            create: (context) => ArticleBloc(
+              repository: context.read<ArticleRepository>(),
+            )..add(GetArticles()),
           ),
         ],
         child: MaterialApp.router(
