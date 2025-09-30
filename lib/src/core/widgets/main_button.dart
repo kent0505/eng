@@ -1,8 +1,8 @@
-import 'package:eng/src/core/widgets/loading_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../constants.dart';
 import 'button.dart';
+import 'loading_widget.dart';
 
 class MainButton extends StatelessWidget {
   const MainButton({

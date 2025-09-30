@@ -33,7 +33,7 @@ class SlidableWidget extends StatelessWidget {
                       height: 85,
                       width: 85,
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: AppColors.tile,
                         borderRadius: BorderRadius.circular(Constants.radius),
                       ),
                       child: const Center(

@@ -47,7 +47,7 @@ class ArticleTile extends StatelessWidget {
             right: Constants.padding,
           ),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: AppColors.tile,
             borderRadius: BorderRadius.circular(Constants.radius),
           ),
           child: Row(

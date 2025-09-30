@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../core/constants.dart';
 import '../../../core/widgets/appbar.dart';
 import '../../../core/widgets/button.dart';
 import '../../../core/widgets/err.dart';
 import '../../../core/widgets/loading_widget.dart';
+import '../../../core/widgets/svg_widget.dart';
 import '../bloc/article_bloc.dart';
 import '../widgets/article_tile.dart';
 import 'article_edit_screen.dart';
@@ -27,7 +29,7 @@ class ArticlesScreen extends StatelessWidget {
               extra: null,
             );
           },
-          child: const Icon(Icons.add),
+          child: const SvgWidget(Assets.add),
         ),
       ),
       body: BlocBuilder<ArticleBloc, ArticleState>(
@@ -37,11 +39,17 @@ class ArticlesScreen extends StatelessWidget {
           }
 
           if (state is ArticlesLoaded) {
-            return ListView.builder(
-              itemCount: state.articles.length,
-              itemBuilder: (context, index) {
-                return ArticleTile(article: state.articles[index]);
+            return RefreshIndicator(
+              onRefresh: () async {
+                context.read<ArticleBloc>().add(GetArticles());
               },
+              child: ListView.builder(
+                padding: const EdgeInsets.only(top: Constants.padding),
+                itemCount: state.articles.length,
+                itemBuilder: (context, index) {
+                  return ArticleTile(article: state.articles[index]);
+                },
+              ),
             );
           }
 

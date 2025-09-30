@@ -28,7 +28,10 @@ class LessonScreen extends StatelessWidget {
             );
           },
           minSize: 60,
-          child: const Icon(Icons.edit_rounded),
+          child: const Icon(
+            Icons.edit_rounded,
+            size: 24,
+          ),
         ),
       ),
       body: Padding(

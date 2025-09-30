@@ -24,6 +24,7 @@ abstract final class Constants {
 }
 
 abstract final class Assets {
+  static const String add = 'assets/add.svg';
   static const String back = 'assets/back.svg';
   static const String home1 = 'assets/home1.svg';
   static const String home2 = 'assets/home2.svg';
