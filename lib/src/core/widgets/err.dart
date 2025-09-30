@@ -22,7 +22,7 @@ class Err extends StatelessWidget {
           const Text(
             'Service is currently unavailable. Please try again later.',
             style: TextStyle(
-              color: AppColors.black,
+              color: Colors.black,
               fontSize: 16,
               fontFamily: AppFonts.w400,
             ),

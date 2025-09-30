@@ -18,7 +18,7 @@ import 'src/features/word/bloc/word_bloc.dart';
 import 'src/features/word/data/word_repository.dart';
 
 // adb tcpip 5555
-// adb connect 192.168.0.190
+// adb connect 192.168.0.191
 // adb reverse tcp:8000 tcp:8000
 
 void main() async {
@@ -33,7 +33,8 @@ void main() async {
   final prefs = await SharedPreferences.getInstance();
 
   final baseUrl = dotenv.env['BASE_URL'] ?? '';
-  final token = prefs.getString(Keys.token) ?? dotenv.env['TOKEN'] ?? '';
+  final apiKey = dotenv.env['API_KEY'] ?? '';
+  final token = prefs.getString(Keys.token) ?? '';
   const timeout = Duration(seconds: 10);
 
   final dio = Dio(
@@ -46,6 +47,7 @@ void main() async {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer $token',
+        'api-key': apiKey,
       },
     ),
   );
@@ -72,24 +74,16 @@ void main() async {
       child: MultiBlocProvider(
         providers: [
           BlocProvider(
-            create: (context) => UserBloc(
-              repository: context.read<UserRepository>(),
-            )..add(GetUser()),
+            create: (context) => UserBloc(context.read<UserRepository>()),
           ),
           BlocProvider(
-            create: (context) => LessonBloc(
-              repository: context.read<LessonRepository>(),
-            )..add(GetLessons()),
+            create: (context) => LessonBloc(context.read<LessonRepository>()),
           ),
           BlocProvider(
-            create: (context) => WordBloc(
-              repository: context.read<WordRepository>(),
-            )..add(GetWords()),
+            create: (context) => WordBloc(context.read<WordRepository>()),
           ),
           BlocProvider(
-            create: (context) => ArticleBloc(
-              repository: context.read<ArticleRepository>(),
-            )..add(GetArticles()),
+            create: (context) => ArticleBloc(context.read<ArticleRepository>()),
           ),
         ],
         child: MaterialApp.router(

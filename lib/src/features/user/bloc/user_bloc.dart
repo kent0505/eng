@@ -12,7 +12,7 @@ part 'user_state.dart';
 class UserBloc extends Bloc<UserEvent, UserState> {
   final UserRepository _repository;
 
-  UserBloc({required UserRepository repository})
+  UserBloc(UserRepository repository)
       : _repository = repository,
         super(UserInitial()) {
     on<UserEvent>(

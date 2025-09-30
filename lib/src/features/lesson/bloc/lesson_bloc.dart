@@ -10,7 +10,7 @@ part 'lesson_state.dart';
 class LessonBloc extends Bloc<LessonEvent, LessonState> {
   final LessonRepository _repository;
 
-  LessonBloc({required LessonRepository repository})
+  LessonBloc(LessonRepository repository)
       : _repository = repository,
         super(LessonInitial()) {
     on<LessonEvent>(
@@ -29,7 +29,10 @@ class LessonBloc extends Bloc<LessonEvent, LessonState> {
   ) async {
     emit(LessonsLoading());
     try {
+      await Future.delayed(const Duration(seconds: 1));
+
       final lessons = await _repository.getLessons();
+
       emit(LessonsLoaded(lessons: lessons));
     } catch (e) {
       emit(LessonError(error: e.toString()));
@@ -43,8 +46,8 @@ class LessonBloc extends Bloc<LessonEvent, LessonState> {
     emit(LessonsLoading());
     try {
       await _repository.addLesson(event.lesson);
-      final lessons = await _repository.getLessons();
-      emit(LessonsLoaded(lessons: lessons));
+
+      add(GetLessons());
     } catch (e) {
       emit(LessonError(error: e.toString()));
     }
@@ -57,8 +60,8 @@ class LessonBloc extends Bloc<LessonEvent, LessonState> {
     emit(LessonsLoading());
     try {
       await _repository.editLesson(event.lesson);
-      final lessons = await _repository.getLessons();
-      emit(LessonsLoaded(lessons: lessons));
+
+      add(GetLessons());
     } catch (e) {
       emit(LessonError(error: e.toString()));
     }
@@ -71,8 +74,8 @@ class LessonBloc extends Bloc<LessonEvent, LessonState> {
     emit(LessonsLoading());
     try {
       await _repository.deleteLesson(event.lesson);
-      final lessons = await _repository.getLessons();
-      emit(LessonsLoaded(lessons: lessons));
+
+      add(GetLessons());
     } catch (e) {
       emit(LessonError(error: e.toString()));
     }

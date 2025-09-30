@@ -14,7 +14,7 @@ final theme = ThemeData(
 
   // OVERSCROLL
   colorScheme: const ColorScheme.light(
-    primary: AppColors.black,
+    primary: Colors.black,
     secondary: AppColors.overScroll, // overscroll
     surface: AppColors.bg, // bg color when push
   ),

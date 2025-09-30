@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import '../../../core/constants.dart';
 import '../../../core/widgets/animated_tile.dart';
 import '../../../core/widgets/button.dart';
+import '../../../core/widgets/slidable_widget.dart';
 import '../../../core/widgets/dialog_widget.dart';
 import '../bloc/lesson_bloc.dart';
 import '../models/lesson.dart';
@@ -23,15 +24,19 @@ class LessonTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Slidable(
-      closeOnScroll: true,
-      endActionPane: ActionPane(
-        extentRatio: 100 / MediaQuery.of(context).size.width,
-        motion: const ScrollMotion(),
-        children: [
-          _DeleteButton(lesson: lesson),
-        ],
-      ),
+    return SlidableWidget(
+      onDelete: () {
+        DialogWidget.show(
+          context,
+          title: 'Delete Lesson?',
+          confirm: true,
+          onPressed: () {
+            Slidable.of(context)?.close();
+            context.read<LessonBloc>().add(DeleteLesson(lesson: lesson));
+            context.pop();
+          },
+        );
+      },
       child: AnimatedTile(
         index: index,
         child: Button(
@@ -50,54 +55,21 @@ class LessonTile extends StatelessWidget {
               right: Constants.padding,
             ),
             decoration: BoxDecoration(
-              color: Colors.white,
+              color: AppColors.tile,
               borderRadius: BorderRadius.circular(Constants.radius),
             ),
             child: Row(
               children: [
-                Text(lesson.title),
+                Text(
+                  lesson.title,
+                  style: const TextStyle(
+                    color: Colors.black,
+                    fontSize: 16,
+                    fontFamily: AppFonts.w500,
+                  ),
+                ),
               ],
             ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class _DeleteButton extends StatelessWidget {
-  const _DeleteButton({required this.lesson});
-
-  final Lesson lesson;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(
-        bottom: 10,
-      ),
-      child: Button(
-        onPressed: () {
-          DialogWidget.show(
-            context,
-            title: 'Delete Lesson?',
-            confirm: true,
-            onPressed: () {
-              Slidable.of(context)?.close();
-              context.read<LessonBloc>().add(DeleteLesson(lesson: lesson));
-              context.pop();
-            },
-          );
-        },
-        child: Container(
-          height: 85,
-          width: 85,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(Constants.radius),
-          ),
-          child: const Center(
-            child: Icon(Icons.delete_rounded),
           ),
         ),
       ),

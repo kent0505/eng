@@ -3,9 +3,8 @@ import 'package:flutter/material.dart';
 abstract final class AppColors {
   static const Color accent = Colors.greenAccent;
   static const Color error = Colors.redAccent;
-  static const Color black = Colors.black;
-  static const Color white = Colors.white;
-  static const Color bg = Color(0xffF2F5F8);
+  static const Color bg = Color(0xffF5F5F1);
+  static const Color tile = Color(0xffF2EAD3);
   static const Color overScroll = Color(0xffd5d5d5);
   static const Color hintColor = Color(0xff707883);
 }
@@ -30,6 +29,14 @@ abstract final class Assets {
   static const String home2 = 'assets/home2.svg';
   static const String profile1 = 'assets/profile1.svg';
   static const String profile2 = 'assets/profile2.svg';
+
+  static const String articles = 'assets/home/articles.png';
+  static const String lessons = 'assets/home/lessons.png';
+  static const String listening = 'assets/home/listening.png';
+  static const String sentences = 'assets/home/sentences.png';
+  static const String settings = 'assets/home/settings.png';
+  static const String wordsPuzzle = 'assets/home/words_puzzle.png';
+  static const String words = 'assets/home/words.png';
 }
 
 abstract final class Keys {

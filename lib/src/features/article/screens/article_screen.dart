@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/constants.dart';
 import '../../../core/widgets/appbar.dart';
+import '../../../core/widgets/button.dart';
 import '../models/article.dart';
+import 'article_edit_screen.dart';
 
 class ArticleScreen extends StatelessWidget {
   const ArticleScreen({super.key, required this.article});
@@ -15,7 +18,19 @@ class ArticleScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: Appbar(title: article.title),
+      appBar: Appbar(
+        title: article.title,
+        right: Button(
+          onPressed: () {
+            context.push(
+              ArticleEditScreen.routePath,
+              extra: article,
+            );
+          },
+          minSize: 60,
+          child: const Icon(Icons.edit_rounded),
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(Constants.padding),
         child: MarkdownBody(

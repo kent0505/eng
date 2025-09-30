@@ -62,7 +62,7 @@ class Field extends StatelessWidget {
       minLines: fieldType == FieldType.multiline ? 10 : 1,
       maxLines: fieldType == FieldType.multiline ? null : 1,
       style: const TextStyle(
-        color: AppColors.black,
+        color: Colors.black,
         fontSize: 14,
         fontFamily: AppFonts.w500,
       ),

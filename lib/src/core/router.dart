@@ -1,6 +1,7 @@
 import 'package:go_router/go_router.dart';
 
 import '../features/article/models/article.dart';
+import '../features/article/screens/article_edit_screen.dart';
 import '../features/article/screens/article_screen.dart';
 import '../features/article/screens/articles_screen.dart';
 import '../features/home/screens/home_screen.dart';
@@ -9,6 +10,7 @@ import '../features/lesson/screens/lesson_edit_screen.dart';
 import '../features/lesson/screens/lesson_screen.dart';
 import '../features/lesson/screens/lessons_screen.dart';
 import '../features/listening/screens/listening_screen.dart';
+import '../features/sentence/pages/sentence_screen.dart';
 import '../features/settings/screens/settings_screen.dart';
 import '../features/splash/screens/splash_screen.dart';
 import '../features/user/screens/login_screen.dart';
@@ -50,6 +52,12 @@ final routerConfig = GoRouter(
       builder: (context, state) => const WordsScreen(),
     ),
 
+    // sentence
+    GoRoute(
+      path: SentenceScreen.routePath,
+      builder: (context, state) => const SentenceScreen(),
+    ),
+
     // article
     GoRoute(
       path: ArticlesScreen.routePath,
@@ -59,6 +67,12 @@ final routerConfig = GoRouter(
       path: ArticleScreen.routePath,
       builder: (context, state) => ArticleScreen(
         article: state.extra as Article,
+      ),
+    ),
+    GoRoute(
+      path: ArticleEditScreen.routePath,
+      builder: (context, state) => ArticleEditScreen(
+        article: state.extra as Article?,
       ),
     ),
 

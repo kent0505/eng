@@ -11,7 +11,7 @@ part 'word_state.dart';
 class WordBloc extends Bloc<WordEvent, WordState> {
   final WordRepository _repository;
 
-  WordBloc({required WordRepository repository})
+  WordBloc(WordRepository repository)
       : _repository = repository,
         super(WordInitial()) {
     on<WordEvent>(
@@ -27,7 +27,10 @@ class WordBloc extends Bloc<WordEvent, WordState> {
   ) async {
     emit(WordsLoading());
     try {
+      await Future.delayed(const Duration(seconds: 1));
+
       final words = await _repository.getWords();
+
       emit(WordsLoaded(words: words));
     } catch (e) {
       logger(e);

@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../core/widgets/appbar.dart';
+import '../../../core/widgets/button.dart';
 import '../../../core/widgets/err.dart';
 import '../../../core/widgets/loading_widget.dart';
 import '../bloc/article_bloc.dart';
 import '../widgets/article_tile.dart';
+import 'article_edit_screen.dart';
 
 class ArticlesScreen extends StatelessWidget {
   const ArticlesScreen({super.key});
@@ -15,7 +18,18 @@ class ArticlesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const Appbar(title: 'Articles'),
+      appBar: Appbar(
+        title: 'Articles',
+        right: Button(
+          onPressed: () {
+            context.push(
+              ArticleEditScreen.routePath,
+              extra: null,
+            );
+          },
+          child: const Icon(Icons.add),
+        ),
+      ),
       body: BlocBuilder<ArticleBloc, ArticleState>(
         builder: (context, state) {
           if (state is ArticlesLoading) {
